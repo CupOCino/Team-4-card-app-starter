@@ -4,7 +4,7 @@ export default function Header() {
   const getClass = ({ isActive }) => (isActive ? "nav-active" : null);
 
   return (
-<header className="container">
+<header className="n-container">
       <nav>
         <NavLink to="/" className={getClass}>
           Home
