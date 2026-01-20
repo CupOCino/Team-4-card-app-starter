@@ -7,7 +7,7 @@ export default function Header() {
 <header className="n-container">
       <nav>
         <NavLink to="/" className={getClass}>
-          Home
+          Home 
         </NavLink>
         <NavLink to="/cards" className={getClass}>
           All Cards

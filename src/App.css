@@ -7,8 +7,18 @@
   - buttons/forms
   - spacing and responsiveness
 */
-.n-container {
-  text-align: right;
+
+.n-container nav {
+  display: flex;       
+  gap: 30px;           
+  justify-content: right;
+  padding: 35px;
+}
+
+
+.n-container a {
+  text-decoration: none;
+  color: black; 
   font-size: 20px;
-  padding: 20px;
+  font-weight:600;
 }
