@@ -27,7 +27,7 @@ export function addCard(card) {
   // TODO: implement POST /addcard
 }
 
-export function updateCard(id, card) {
+export function EditCard(id, card) {
   // TODO: implement PUT /updatecard/:id
 }
 
