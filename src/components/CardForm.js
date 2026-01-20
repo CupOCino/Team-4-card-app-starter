@@ -13,22 +13,37 @@ export default function CardForm({
   - handle form submission ----
   - style as a form UI */
   return (
-    <>
+    <div className="card-form-container">
       <h1>Add a new card</h1>
 
-      <form onSubmit={onSubmit}>
-        <label>
-          Card Name:
-          <input type="text" name="name" />
-        </label>
+      
+      {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
 
-        <label>
-          Card Picture:
-          <input type="text" name="picture" />
-        </label>
-        
-        <input type="submit" value="Submit" />
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label>Card Name:</label>
+          <input
+            type="text"
+            name="card_name"         
+            value={values.card_name}  
+            onChange={onChange}       
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Card Picture (URL):</label>
+          <input
+            type="text"
+            name="card_pic"          
+            value={values.card_pic}   
+            onChange={onChange}
+          />
+        </div>
+
+        <button type="submit" disabled={busy}>
+          {busy ? "Processing..." : submitText}
+        </button>
       </form>
-    </>
+    </div>
   );
 }
