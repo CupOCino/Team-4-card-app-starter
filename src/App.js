@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Removed Navigate if unused
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CardList from "./pages/CardList";
@@ -13,9 +13,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cards" element={<CardList />} />
-        {/* TODO: Complete the routes */}
-        <Route path="/AddCard" element={<AddCard />}/>
-        <Route path="/EditCard/:id" element={<EditCard />} />
+        <Route path="/cards/new" element={<AddCard />} />
+        <Route path="/cards/:id/edit" element={<EditCard />} />
       </Routes>
     </BrowserRouter>
   );
