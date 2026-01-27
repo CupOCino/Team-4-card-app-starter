@@ -16,8 +16,8 @@ const API_URL = process.env.REACT_APP_API_URL || "";
  * - DELETE /deletecard/:id
  */
 
-export async function getCards() {
-  const res = await fetch(`${API_URL}/allcards`);
+export async function getAssignments() {
+  const res = await fetch(`${API_URL}/allassignments`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
@@ -30,6 +30,6 @@ export function EditCard(id, card) {
   // TODO: implement PUT /updatecard/:id
 }
 
-export function deleteCard(id) {
+export function deleteAssignment(id) {
   // TODO: implement DELETE /deletecard/:id
 }
