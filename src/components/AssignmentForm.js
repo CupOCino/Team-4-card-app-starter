@@ -1,4 +1,4 @@
-export default function CardForm({
+export default function AssignmentForm({
   values,
   onChange,
   onSubmit,
@@ -7,22 +7,19 @@ export default function CardForm({
   submitText,
 }) {
   return (
-    <div className="card-form-container">
+    <div className="assignment-form-container">
       <h1>Add a new assignment</h1>
-
-      {/* Display Error if it exists */}
-      {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
 
       <form onSubmit={onSubmit}>
         
-        {/* Field 1: Module Name */}
+
         <div className="form-group">
           <label>Module Name:</label>
           <input
             type="text"
-            name="module_name"         // Matches DB column & State
-            value={values.module_name} // Connects to State
-            onChange={onChange}        // Allows typing
+            name="module_name"         
+            value={values.module_name} 
+            onChange={onChange}    
             placeholder="e.g. Web Development"
           />
         </div>
@@ -32,9 +29,9 @@ export default function CardForm({
           <label>Assignment Title:</label>
           <input
             type="text"
-            name="assignment_title"         // Matches DB column & State
-            value={values.assignment_title} // Connects to State
-            onChange={onChange}             // Allows typing
+            name="assignment_title"        
+            value={values.assignment_title}
+            onChange={onChange}             
             placeholder="e.g. Project 1"
           />
         </div>

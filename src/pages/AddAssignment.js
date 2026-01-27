@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CardForm from "../components/CardForm"; 
-// 1. FIXED: Import 'addAssignment' instead of 'addCard'
+import AssignmentForm from "../components/AssignmentForm"; 
 import { addAssignment } from "../services/api"; 
 
 export default function AddAssignment() {
@@ -26,9 +25,8 @@ export default function AddAssignment() {
     setError(null);
 
     try {
-      // 2. FIXED: Call the new function name 'addAssignment'
       await addAssignment(values);
-      navigate("/allassignments"); // or "/assignments" depending on your route path
+      navigate("/allassignments");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -38,7 +36,7 @@ export default function AddAssignment() {
 
   return (
     <main>
-      <CardForm
+      <AssignmentForm
         values={values}
         onChange={handleChange}
         onSubmit={handleSubmit}
