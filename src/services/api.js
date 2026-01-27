@@ -1,35 +1,48 @@
 /**
- * API Service (Create React App)
- *
- * 1) Create `.env` at project root
- * 2) Set: REACT_APP_API_URL=https://YOUR-BACKEND.onrender.com
- * 3) Restart `npm start`
- */
-const API_URL = process.env.REACT_APP_API_URL || "";
-
-/**
- * TODO: If your backend routes differ, update the paths here.
- * Required endpoints:
- * - GET    /allcards
- * - POST   /addcard
- * - PUT    /updatecard/:id
- * - DELETE /deletecard/:id
+ * API Service
+ * * 1) Create a file named .env in your project root (next to package.json)
+ * 2) Add this line inside it: 
+ * REACT_APP_API_URL=https://your-backend-url.onrender.com
+ * 3) Restart your react app (Ctrl+C, then npm start)
  */
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"; 
+
+// --- GET ALL ASSIGNMENTS ---
 export async function getAssignments() {
-  const res = await fetch(`${API_URL}/allassignments`);
+  // FIX: The comment said the endpoint is /allcards, not /allassignments
+  const res = await fetch(`${API_URL}/allcards`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
-export function addCard(card) {
-  // TODO: implement POST /addcard
+// --- ADD NEW ASSIGNMENT ---
+export async function addCard(card) {
+  const res = await fetch(`${API_URL}/addcard`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(card),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
 }
 
-export function EditCard(id, card) {
-  // TODO: implement PUT /updatecard/:id
+// --- EDIT ASSIGNMENT ---
+export async function EditCard(id, card) {
+  const res = await fetch(`${API_URL}/updatecard/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(card),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
 }
 
-export function deleteAssignment(id) {
-  // TODO: implement DELETE /deletecard/:id
+// --- DELETE ASSIGNMENT ---
+export async function deleteAssignment(id) {
+  const res = await fetch(`${API_URL}/deletecard/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res;
 }
