@@ -11,7 +11,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 // --- GET ALL ASSIGNMENTS ---
 export async function getAssignments() {
   // FIX: The comment said the endpoint is /allcards, not /allassignments
-  const res = await fetch(`${API_URL}/allcards`);
+  const res = await fetch(`${API_URL}/allassignments`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
