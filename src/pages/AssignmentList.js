@@ -37,8 +37,8 @@ export default function AssignmentList() {
       setAssignments((prevAssignments) =>
         prevAssignments.filter((a) => a.id !== assignment.id)
       );
-    } catch (error) {
-      console.error("Failed to delete assignment", error);
+    } catch (err) {
+      console.error(err);
       setError("Failed to delete assignment");
     } finally {
       setBusy(false);
