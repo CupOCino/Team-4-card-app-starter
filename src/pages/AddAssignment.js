@@ -28,7 +28,7 @@ export default function AddAssignment() {
     try {
       // 2. FIXED: Call the new function name 'addAssignment'
       await addAssignment(values);
-      navigate("/assignments"); // or "/assignments" depending on your route path
+      navigate("/allassignments"); // or "/assignments" depending on your route path
     } catch (err) {
       setError(err.message);
     } finally {
