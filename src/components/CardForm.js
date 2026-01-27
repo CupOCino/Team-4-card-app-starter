@@ -6,37 +6,36 @@ export default function CardForm({
   error,
   submitText,
 }) {
-    /* TODO: Complete the CardForm component 
-  - display form inputs for card_name and card_pic
-  - display error message
-  - display submit button ----
-  - handle form submission ----
-  - style as a form UI */
   return (
     <div className="card-form-container">
-      <h1>Add a new card</h1>
+      <h1>Add a new assignment</h1>
 
-      
+      {/* Display Error if it exists */}
       {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
 
       <form onSubmit={onSubmit}>
+        
+        {/* Field 1: Module Name */}
         <div className="form-group">
-          <label>Card Name:</label>
+          <label>Module Name:</label>
           <input
             type="text"
-            name="card_name"         
-            value={values.card_name}  
-            onChange={onChange}       
+            name="module_name"         // Matches DB column & State
+            value={values.module_name} // Connects to State
+            onChange={onChange}        // Allows typing
+            placeholder="e.g. Web Development"
           />
         </div>
 
+        {/* Field 2: Assignment Title */}
         <div className="form-group">
-          <label>Card Picture (URL):</label>
+          <label>Assignment Title:</label>
           <input
             type="text"
-            name="card_pic"          
-            value={values.card_pic}   
-            onChange={onChange}
+            name="assignment_title"         // Matches DB column & State
+            value={values.assignment_title} // Connects to State
+            onChange={onChange}             // Allows typing
+            placeholder="e.g. Project 1"
           />
         </div>
 

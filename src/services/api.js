@@ -10,29 +10,30 @@ const API_URL = process.env.REACT_APP_API_URL || "https://l16-appwebservice.onre
 
 // --- GET ALL ASSIGNMENTS ---
 export async function getAssignments() {
-  // FIX: The comment said the endpoint is /allcards, not /allassignments
   const res = await fetch(`${API_URL}/allassignments`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
 // --- ADD NEW ASSIGNMENT ---
-export async function addCard(card) {
-  const res = await fetch(`${API_URL}/addcard`, {
+export async function addAssignment(assignment) {
+  const res = await fetch(`${API_URL}/addassignment`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(card),
+    // Fixed: Now sends 'assignment', not 'card'
+    body: JSON.stringify(assignment),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
 // --- EDIT ASSIGNMENT ---
-export async function EditCard(id, card) {
-  const res = await fetch(`${API_URL}/updatecard/${id}`, {
+export async function updateAssignment(id, assignment) {
+  // Fixed: Endpoint changed from /updatecard to /updateassignment
+  const res = await fetch(`${API_URL}/updateassignment/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(card),
+    body: JSON.stringify(assignment),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
@@ -40,7 +41,8 @@ export async function EditCard(id, card) {
 
 // --- DELETE ASSIGNMENT ---
 export async function deleteAssignment(id) {
-  const res = await fetch(`${API_URL}/deletecard/${id}`, {
+  // Fixed: Endpoint changed from /deletecard to /deleteassignment
+  const res = await fetch(`${API_URL}/deleteassignment/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

@@ -12,7 +12,7 @@ export default function Header() {
         <NavLink to="/allassignments" className={getClass}>
           All Assignments
         </NavLink>
-        <NavLink to="/cards/AddCard" className={getClass}>
+        <NavLink to="/addassignment" className={getClass}>
           Add Assignment
         </NavLink>
       </nav>
