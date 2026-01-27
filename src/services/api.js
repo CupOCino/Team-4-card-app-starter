@@ -6,7 +6,7 @@
  * 3) Restart your react app (Ctrl+C, then npm start)
  */
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"; 
+const API_URL = process.env.REACT_APP_API_URL || "https://l16-appwebservice.onrender.com"; 
 
 // --- GET ALL ASSIGNMENTS ---
 export async function getAssignments() {
