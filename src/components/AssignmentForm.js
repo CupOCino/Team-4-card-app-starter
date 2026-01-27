@@ -24,7 +24,6 @@ export default function AssignmentForm({
           />
         </div>
 
-        {/* Field 2: Assignment Title */}
         <div className="form-group">
           <label>Assignment Title:</label>
           <input

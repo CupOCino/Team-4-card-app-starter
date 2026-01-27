@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // Removed Navigate if unused
+import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AssignmentList from "./pages/AssignmentList";
@@ -13,7 +13,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/allassignments" element={<AssignmentList />} />
-        {/* TODO: Complete the routes */}
         <Route path="/addassignment" element={<AddAssignment />}/>
         <Route path="/EditCard/:id" element={<EditCard />} />
       </Routes>
