@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Removed Navigate if unused
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AssignmentList from "./pages/AssignmentList";
