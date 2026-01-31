@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/api";
+
+const USERS = [
+  { username: "user", password: "userpassword123" }
+];
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,13 +19,16 @@ export default function Login() {
     setError(null);
 
     try {
-      const res = await login({ username, password });
+      const user = USERS.find(
+        (u) => u.username === username && u.password === password
+      );
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!user) {
+        throw new Error("Invalid username or password");
+      }
 
-      const data = await res.json();
-      localStorage.setItem("token", data.token);
-      navigate("/cards/new");
+      localStorage.setItem("token", username);
+      navigate("/allassignments");
     } catch (err) {
       console.error("Login failed", err);
       setError(err.message || "Login failed");
@@ -33,33 +39,36 @@ export default function Login() {
 
   return (
     <main>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
+      <div className="card-form-container">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        {error && <p style={{ color: "crimson" }}>{error}</p>}
+          {error && <p style={{ color: "#ff4d4d" }}>{error}</p>}
 
-        <button disabled={busy} type="submit">
-          {busy ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          <button disabled={busy} type="submit">
+            {busy ? "Logging in..." : "Login"}
+          </button>
+        </form>
+      </div>
     </main>
   );
-}
+}   

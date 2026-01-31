@@ -42,3 +42,12 @@ export async function deleteAssignment(id) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res;
 }
+
+export async function login(credentials) {
+  const res = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
+  return res;
+}
