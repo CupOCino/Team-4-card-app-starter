@@ -237,3 +237,27 @@ div[class*="assignment"] p {
   color: var(--bg-color);
   transform: translateY(-2px);
 }
+
+/* In your CSS file */
+.simple-select-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.simple-select-label {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.simple-select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+}

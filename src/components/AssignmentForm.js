@@ -1,18 +1,20 @@
-export default function AssignmentForm({
-  values,
-  onChange,
-  onSubmit,
-  busy,
-  error,
-  submitText,
-  subtext, 
+import React from "react";
+
+export default function AssignmentForm({ 
+  values, 
+  onChange, 
+  onSubmit, 
+  busy, 
+  error, 
+  submitText, 
+  subtext 
 }) {
   return (
     <div className="card-form-container">
       <h1>{submitText}</h1>
-      
-
       {subtext && <p style={{ color: "#888", marginBottom: "20px" }}>{subtext}</p>}
+
+      {error && <p style={{ color: "red", marginBottom: "10px" }}>{error}</p>}
 
       <form onSubmit={onSubmit}>
         <div className="form-group">
@@ -23,6 +25,7 @@ export default function AssignmentForm({
             value={values.module_name}
             onChange={onChange}
             placeholder="e.g. Web Development"
+            required
           />
         </div>
 
@@ -34,7 +37,29 @@ export default function AssignmentForm({
             value={values.assignment_title}
             onChange={onChange}
             placeholder="e.g. Project 1"
+            required
           />
+        </div>
+
+        <div className="form-group">
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            value={values.description}
+            onChange={onChange}
+            placeholder="Brief description"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Status:</label>
+          <select name="status" value={values.status} onChange={onChange}>
+            <option value="not started">Not Started</option>
+            <option value="in progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
 
         <button type="submit" disabled={busy}>
