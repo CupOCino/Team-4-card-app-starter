@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/allassignments" element={<AssignmentList />} />
         <Route path="/addassignment" element={<AddAssignment />}/>
-        <Route path="/EditCard/:id" element={<EditCard />} />
+        <Route path="/assignments/:id/edit" element={<EditCard />} />
       </Routes>
     </BrowserRouter>
   );
