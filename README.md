@@ -9,19 +9,20 @@ You will complete the TODOs to build a Card Management App that talks to your de
 ## Routes (Required)
 
 - `/` Home
-- `/cards` View all cards
-- `/cards/new` Add a new card
-- `/cards/:id/edit` Edit a card
+- `/allassignments` View all cards
+- `/addassignment` Add a new assignment
+- `/updateassignment/:id/edit` Edit an specific assignment
+- `/deleteassignment/:id` Delete a specific assignment
 
 ## Backend API Contract (Required)
 
-- `GET    /allcards`
-- `POST   /addcard`
-- `PUT    /updatecard/:id`
-- `DELETE /deletecard/:id`
+- `GET    /allassignments`
+- `POST   /addassignment`
+- `PUT    /updateassignment/:id`
+- `DELETE /deleteassignment/:id`
 
 Expected card JSON shape:
 
 ```json
-{ "id": 1, "card_name": "Pikachu", "card_pic": "https://..." }
+{ "id": 1, "module_name": "C219", "assignment_title": "CA2", "status": "in progress" }
 ```
