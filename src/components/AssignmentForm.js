@@ -56,9 +56,9 @@ export default function AssignmentForm({
         <div className="simple-select-container">
           <label>Status:</label>
           <select name="status" value={values.status} onChange={onChange} className="simple-select">
-            <option value="not started">Not Started</option>
-            <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
           </select>
         </div>
 
