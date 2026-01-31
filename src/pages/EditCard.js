@@ -9,7 +9,9 @@ export default function EditCard() {
 
   const [values, setValues] = useState({
     module_name: "",
-    assignment_title: ""
+    assignment_title: "",
+    description: "",
+    status: ""
   });
 
   const [busy, setBusy] = useState(false);
@@ -36,7 +38,9 @@ export default function EditCard() {
 
         setValues({
           module_name: found.module_name || "",
-          assignment_title: found.assignment_title || ""
+          assignment_title: found.assignment_title || "",
+          description: found.description || "",
+          status: found.status || ""
         });
       } catch (err) {
         console.error("Failed to load assignment", err);

@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 export default function Assignment({ assignment, onDelete, busy, disabled }) {
   const navigate = useNavigate();
 
+  const handleDelete = () => {
+    if (window.confirm(`Are you sure you want to delete "${assignment.assignment_title}"?`)) {
+      onDelete(assignment);
+    }
+  };
+
   return (
     <div className="assignment-card">
       <div className="info">
@@ -21,7 +27,7 @@ export default function Assignment({ assignment, onDelete, busy, disabled }) {
         </button>
 
         <button 
-          onClick={() => onDelete(assignment)}
+          onClick={handleDelete}
           disabled={disabled || busy}
           style={{ borderColor: "#ff4d4d", color: "#ff4d4d", marginLeft: "10px" }} 
         >
