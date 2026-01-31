@@ -1,15 +1,32 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Assignment({ assignment, onDelete }) { 
+export default function Assignment({ assignment, onDelete, busy, disabled }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="card">
-      <h2>{assignment.assignment_title}</h2>
-      <p>Module: {assignment.module_name}</p>
-      <p>Status: {assignment.status}</p>
-      <p>ID: {assignment.id}</p>
+    <div className="assignment-card">
+      <div className="info">
+        <h3>{assignment.assignment_title}</h3>
+        <p>Module: {assignment.module_name}</p>
+        <p style={{ fontSize: "0.85rem", color: "#888" }}>Status: {assignment.status || "Pending"}</p>
+      </div>
 
-      <Link to={`/assignments/${assignment.id}/edit`}>Edit</Link>
-      <button onClick={() => onDelete(assignment)}>Delete</button>
+      <div className="actions">
+        <button 
+          onClick={() => navigate(`/assignments/${assignment.id}/edit`)} 
+          disabled={disabled}
+        >
+          Edit
+        </button>
+
+        <button 
+          onClick={() => onDelete(assignment)} 
+          disabled={disabled || busy}
+          style={{ borderColor: "#ff4d4d", color: "#ff4d4d", marginLeft: "10px" }} 
+        >
+          {busy ? "..." : "Delete"}
+        </button>
+      </div>
     </div>
   );
 }

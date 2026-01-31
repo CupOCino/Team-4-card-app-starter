@@ -1,24 +1,239 @@
-/*
-  Styling is intentionally NOT provided.
-
-  TODO: Design your own UI:
-  - layout (grid/cards/table)
-  - typography
-  - buttons/forms
-  - spacing and responsiveness
-*/
-
-.n-container nav {
-  display: flex;       
-  gap: 30px;           
-  justify-content: right;
-  padding: 35px;
+:root {
+  --bg-color: #050505;
+  --card-bg: #111111;
+  --text-main: #f0f0f0;
+  --text-muted: #888888;
+  --accent: #ffffff;
+  --input-bg: #1a1a1a;
+  --border-color: #333333;
+  --transition-speed: 0.3s;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-.n-container a {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--text-main);
   text-decoration: none;
-  color: black; 
+  transition: opacity var(--transition-speed);
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 80vh;
+  animation: fadeIn 0.4s ease-out;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 35px;
+  gap: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav a {
   font-size: 20px;
-  font-weight:600;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--bg-color);
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all var(--transition-speed) ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-form-container {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.assignment-card, 
+div[class*="assignment"] {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color var(--transition-speed);
+}
+
+div[class*="assignment"]:hover {
+  border-color: #444;
+}
+
+div[class*="assignment"] h3 {
+  margin-bottom: 4px;
+  font-size: 1.2rem;
+}
+
+div[class*="assignment"] p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.actions button:hover {
+  background-color: var(--accent);
+  color: var(--bg-color);
+  border-color: var(--accent);
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #ff4d4d;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.container a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+}
+
+.container a:hover {
+  background-color: var(--accent);
+  color: var(--bg-color);
+  transform: translateY(-2px);
 }
