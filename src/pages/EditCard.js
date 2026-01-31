@@ -21,31 +21,30 @@ export default function EditCard() {
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  async function loadAssignment() {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const assignments = await getAssignments();
-      const found = assignments.find((a) => String(a.id) === String(id));
-
-      if (!found) {
-        throw new Error("Assignment not found");
-      }
-
-      setValues({
-        module_name: found.module_name || "",
-        assignment_title: found.assignment_title || ""
-      });
-    } catch (err) {
-      console.error("Failed to load assignment", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    async function loadAssignment() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const assignments = await getAssignments();
+        const found = assignments.find((a) => String(a.id) === String(id));
+
+        if (!found) {
+          throw new Error("Assignment not found");
+        }
+
+        setValues({
+          module_name: found.module_name || "",
+          assignment_title: found.assignment_title || ""
+        });
+      } catch (err) {
+        console.error("Failed to load assignment", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
     loadAssignment();
   }, [id]);
 
