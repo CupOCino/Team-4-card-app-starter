@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <main className="container">
-      <h1>Welcome to Assignment Tracker</h1>
+      <h1>Welcome to TRACE</h1>
       <p>Manage your school work easily.</p>
       <Link to="/allassignments">View All Assignments</Link>
     </main>
