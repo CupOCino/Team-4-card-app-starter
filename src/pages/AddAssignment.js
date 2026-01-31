@@ -43,6 +43,7 @@ export default function AddAssignment() {
         busy={busy}
         error={error}
         submitText="Add Assignment"
+        subtext="Enter the details of your new assignment below."
       />
     </main>
   );
