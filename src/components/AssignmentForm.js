@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function AssignmentForm({ 
-  values, 
-  onChange, 
-  onSubmit, 
-  busy, 
-  error, 
-  submitText, 
-  subtext 
+export default function AssignmentForm({
+  values,
+  onChange,
+  onSubmit,
+  busy,
+  error,
+  submitText,
+  subtext
 }) {
   return (
     <div className="card-form-container">
@@ -53,14 +53,19 @@ export default function AssignmentForm({
           />
         </div>
 
-        <div className="form-group">
+        <div className="simple-select-container">
           <label>Status:</label>
-          <select name="status" value={values.status} onChange={onChange}>
+          <select name="status" value={values.status} onChange={onChange} className="simple-select">
             <option value="not started">Not Started</option>
             <option value="in progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
         </div>
+
+        <br/>
+        <br/>
+        <br/>
+
 
         <button type="submit" disabled={busy}>
           {busy ? "Processing..." : submitText}
