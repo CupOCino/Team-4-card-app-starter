@@ -6,7 +6,7 @@ export default function Header() {
   return (
 <header className="n-container">
       <nav>
-        <NavLink to="/" className={getClass}>
+        <NavLink to="/home" className={getClass}>
           Home 
         </NavLink>
         <NavLink to="/allassignments" className={getClass}>
