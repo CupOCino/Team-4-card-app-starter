@@ -1,54 +1,12 @@
-const API_URL = process.env.REACT_APP_API_URL || "https://l16-appwebservice.onrender.com"; 
+const API_URL = process.env.REACT_APP_API_URL || "https://l16-appwebservice.onrender.com";
 
-export async function getAssignments() {
-  const res = await fetch(`${API_URL}/allassignments`);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
-}
-
-export async function addAssignment(assignment) {
+// Helper to return Authorization header if token exists
+function authHeader() {
   const token = localStorage.getItem("token");
-  if (!token) throw new Error("User is not logged in");
-  const res = await fetch(`${API_URL}/addassignment`, {
-    method: "POST",
-    headers: { 
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify(assignment),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
+  return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
-export async function updateAssignment(id, assignment) {
-  const token = localStorage.getItem("token");
-  if (!token) throw new Error("User is not logged in");
-  const res = await fetch(`${API_URL}/updateassignment/${id}`, {
-    method: "PUT",
-    headers: { 
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify(assignment),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
-}
-
-export async function deleteAssignment(id) {
-  const token = localStorage.getItem("token");
-  if (!token) throw new Error("User is not logged in");
-  const res = await fetch(`${API_URL}/deleteassignment/${id}`, {
-    method: "DELETE",
-    headers: { 
-      "Authorization": `Bearer ${token}` //
-    },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res;
-}
-
+// LOGIN (public route)
 export async function login(credentials) {
   const res = await fetch(`${API_URL}/login`, {
     method: "POST",
@@ -56,5 +14,52 @@ export async function login(credentials) {
     body: JSON.stringify(credentials),
   });
   if (!res.ok) throw new Error("Login failed");
+  return res.json(); // { token: "..." }
+}
+
+// GET assignments (public)
+export async function getAssignments() {
+  const res = await fetch(`${API_URL}/allassignments`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
+}
+
+// ADD assignment (protected)
+export async function addAssignment(assignment) {
+  const res = await fetch(`${API_URL}/addassignment`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...authHeader(), // automatically includes token if exists
+    },
+    body: JSON.stringify(assignment),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+// UPDATE assignment (protected)
+export async function updateAssignment(id, assignment) {
+  const res = await fetch(`${API_URL}/updateassignment/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      ...authHeader(),
+    },
+    body: JSON.stringify(assignment),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+// DELETE assignment (protected)
+export async function deleteAssignment(id) {
+  const res = await fetch(`${API_URL}/deleteassignment/${id}`, {
+    method: "DELETE",
+    headers: {
+      ...authHeader(),
+    },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res;
 }

@@ -16,30 +16,42 @@ export default function Login() {
     setError("");
 
     try {
+      // Call login API
       const data = await login({ username, password });
-      
+
+      // Save token to localStorage
       localStorage.setItem("token", data.token);
+
+      // Redirect to home page
       navigate("/home");
     } catch (err) {
-      setError("Login failed");
+      console.error(err);
+      setError("Login failed. Check your username or password.");
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <main>
-      <h2>Login</h2>
+    <main style={{ maxWidth: "400px", margin: "50px auto", padding: "20px" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Login</h2>
 
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
+      {error && <p style={{ color: "crimson", textAlign: "center" }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <input
-        type="text"
+          type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "15px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+          }}
         />
 
         <input
@@ -48,9 +60,29 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "20px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+          }}
         />
 
-        <button type="submit" disabled={busy}>
+        <button
+          type="submit"
+          disabled={busy}
+          style={{
+            width: "100%",
+            padding: "12px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            fontWeight: "bold",
+            borderRadius: "6px",
+            border: "none",
+            cursor: busy ? "not-allowed" : "pointer",
+          }}
+        >
           {busy ? "Logging in..." : "Login"}
         </button>
       </form>
