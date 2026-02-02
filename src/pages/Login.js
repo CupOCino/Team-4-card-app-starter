@@ -19,7 +19,7 @@ export default function Login() {
       const data = await login({ username, password });
       
       localStorage.setItem("token", data.token);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError("Login failed");
     } finally {
