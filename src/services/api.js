@@ -8,6 +8,7 @@ export async function getAssignments() {
 
 export async function addAssignment(assignment) {
   const token = localStorage.getItem("token");
+  if (!token) throw new Error("User is not logged in");
   const res = await fetch(`${API_URL}/addassignment`, {
     method: "POST",
     headers: { 
@@ -22,6 +23,7 @@ export async function addAssignment(assignment) {
 
 export async function updateAssignment(id, assignment) {
   const token = localStorage.getItem("token");
+  if (!token) throw new Error("User is not logged in");
   const res = await fetch(`${API_URL}/updateassignment/${id}`, {
     method: "PUT",
     headers: { 
@@ -36,6 +38,7 @@ export async function updateAssignment(id, assignment) {
 
 export async function deleteAssignment(id) {
   const token = localStorage.getItem("token");
+  if (!token) throw new Error("User is not logged in");
   const res = await fetch(`${API_URL}/deleteassignment/${id}`, {
     method: "DELETE",
     headers: { 
@@ -47,7 +50,7 @@ export async function deleteAssignment(id) {
 }
 
 export async function login(credentials) {
-  const res = await fetch(`${API_URL}/`, {
+  const res = await fetch(`${API_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
