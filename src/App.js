@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/allassignments" element={<AssignmentList />} />
         <Route path="/addassignment" element={<AddAssignment />}/>

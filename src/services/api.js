@@ -49,5 +49,6 @@ export async function login(credentials) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
   });
-  return res;
+  if (!res.ok) throw new Error("Login failed");
+  return res.json();
 }
