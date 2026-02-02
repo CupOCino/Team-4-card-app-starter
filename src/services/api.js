@@ -44,7 +44,7 @@ export async function deleteAssignment(id) {
 }
 
 export async function login(credentials) {
-  const res = await fetch(`${API_URL}/login`, {
+  const res = await fetch(`${API_URL}/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
